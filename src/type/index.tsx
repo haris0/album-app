@@ -27,3 +27,11 @@ export interface userType{
     bs: string,
   },
 }
+
+export interface photoType{
+  albumId: number,
+  id: number,
+  title: string,
+  url: string,
+  thumbnailUrl: string,
+}

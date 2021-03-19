@@ -6,12 +6,12 @@ import {albumType, userType} from '../../type'
 const MainPage = () => {
 
   const [loading, setLoading] = useState<boolean>(false)
-  const [dataAlbums, setDataAlbums] = useState<albumType|null>()
-  const [dataUsers, setDataUsers] = useState<userType|null>()
+  const [dataAlbums, setDataAlbums] = useState<albumType[]|null>()
+  const [dataUsers, setDataUsers] = useState<userType[]|null>()
   const [error, setError] = useState<any>()
 
   useEffect(()=>{
-    const getData = async() =>{
+    const getAlbumUser = async() =>{
       setLoading(true)
       try {
         let [responseAlbum, responseUser] = await Promise.all([
@@ -26,7 +26,7 @@ const MainPage = () => {
       }
       setLoading(false)
     }
-    getData()
+    getAlbumUser()
   }, [])
 
   return (
