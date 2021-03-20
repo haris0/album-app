@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './MainPage.scss'
 import {HTTP, albums, users} from '../../services'
-import {albumType, userType} from '../../type'
+import {albumType} from '../../type'
 import Header from '../Reuseable/Header'
 import {Container,
         Form,} from 'react-bootstrap'
@@ -98,6 +98,8 @@ const MainPage = () => {
           {filteredAlbum.map(album => (
             <AlbumCard
               key={album.id}
+              id={album.id}
+              userId={album.userId}
               albumName={album.title}
               userName={album.userName}/>
           ))}

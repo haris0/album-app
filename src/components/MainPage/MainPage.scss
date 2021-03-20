@@ -26,6 +26,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    .card-hover:hover{
+      text-decoration: underline;
     } 
   }
 }
