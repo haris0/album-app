@@ -1,5 +1,6 @@
 export interface albumType {
   userId:number,
+  userName:string,
   id:number,
   title:string
 }

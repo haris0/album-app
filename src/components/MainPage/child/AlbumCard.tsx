@@ -2,15 +2,14 @@ import React from 'react'
 import {Card} from 'react-bootstrap'
 
 type props ={
-  keyItem:number
   albumName:string,
   userName:string
 }
 
-const AlbumCard = ({keyItem, albumName,userName}:props) => {
+const AlbumCard = ({albumName,userName}:props) => {
   return (
     <>
-      <Card key={keyItem} style={{cursor:'pointer'}}>
+      <Card className='album-card'>
         <Card.Header>
           <div className="oneline">{albumName}</div>
         </Card.Header>

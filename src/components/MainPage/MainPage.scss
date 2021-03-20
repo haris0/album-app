@@ -16,12 +16,16 @@
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  .oneline{
-    font-weight: bold;
+
+  .album-card{
     text-transform: capitalize;
-    width: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    cursor: pointer;
+    .oneline{
+      font-weight: bold;
+      width: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    } 
   }
 }
