@@ -1,0 +1,27 @@
+.main-page{
+  .margin{
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .display-grid{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 10px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .display-grid{
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .oneline{
+    font-weight: bold;
+    text-transform: capitalize;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
