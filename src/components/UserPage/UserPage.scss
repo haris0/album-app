@@ -1,0 +1,62 @@
+.user-page{
+  .margin{
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  div.user-data{
+    display: flex;
+
+    div.margin-left{
+      margin-top: 7px;
+      margin-left: 20px;
+    }
+
+    .user-name{
+      font-weight: bold;
+      font-size: x-large;
+    }
+
+    .avatar{
+      width: 90px;
+      height: 90px;
+      border-radius: 50px;
+      background-color: lightgray;
+    }
+  }
+
+  .sub-title{
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .display-grid{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 10px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .display-grid{
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .album-card{
+    text-transform: capitalize;
+    cursor: pointer;
+  
+    .card-hover:hover{
+      text-decoration: underline;
+    } 
+  
+    .oneline{
+      font-weight: bold;
+      width: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

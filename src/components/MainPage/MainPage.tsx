@@ -40,7 +40,7 @@ const MainPage = () => {
 
   return (
     <div className='main-page'>
-      <Header title='Album App'/>
+      <Header/>
       <Container className='margin'>
         <Form>
           <Form.Group controlId="exampleForm.ControlInput">

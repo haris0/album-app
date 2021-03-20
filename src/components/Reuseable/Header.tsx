@@ -6,16 +6,12 @@ import {Navbar,
         Container} from 'react-bootstrap'
 import './Header.scss'
 
-type props = {
-  title:string
-}
-
-const Header = ({title}:props) => {
+const Header = () => {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand style={{cursor:'pointer', fontWeight:'bold'}}>{title}</Navbar.Brand>
+          <Navbar.Brand style={{cursor:'pointer', fontWeight:'bold'}}>Album App</Navbar.Brand>
             <Nav className="mr-auto">
             </Nav>
             <Nav>
