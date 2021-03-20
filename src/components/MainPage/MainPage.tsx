@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './MainPage.scss'
-import {HTTP, albums, users} from '../../services'
+import {useFetchAlbum} from '../../services'
 import {albumType} from '../../type'
 import Header from '../Reuseable/Header'
 import {Container,
@@ -11,51 +11,32 @@ import ErrorText from '../Reuseable/ErrorText'
 
 const MainPage = () => {
 
-  const [loading, setLoading] = useState<boolean>(false)
-  const [dataAlbums, setDataAlbums] = useState<albumType[]>([])
-  const [filteredAlbum, setFilteredAlbum] = useState<albumType[]>([]);
-  const [error, setError] = useState<any>()
+  const isMounted = useRef(true);
+  const [filteredAlbum, setFilteredAlbum] = useState<albumType[]>();
   const [keyWord, setKeyword] = useState<string>("");
   const [filterType, setFilterType] = useState<string>('album');
+  
+  const { loading, data , error } = useFetchAlbum(isMounted);
 
   const handleChange = (event:React.ChangeEvent<{ value: string }>) => {
     let val = event.target.value
     setKeyword(val);
     if (val === "") {
-      setFilteredAlbum(dataAlbums);
+      setFilteredAlbum(data.data);
     } else if(filterType === 'album') {
-      setFilteredAlbum(dataAlbums.filter((album) => 
+      setFilteredAlbum(data.data.filter((album:albumType) => 
         album.title.includes(val.toLocaleLowerCase())
       ))
     } else{
-      setFilteredAlbum(dataAlbums.filter((album) => 
+      setFilteredAlbum(data.data.filter((album:albumType) => 
         album.userName.includes(val.toLocaleLowerCase())
       ))
     }
   };
 
   useEffect(()=>{
-    const getAlbumUser = async() =>{
-      setLoading(true)
-      try {
-        let [responseAlbum, responseUser] = await Promise.all([
-           HTTP.get(albums),
-           HTTP.get(users)
-        ])
-        responseAlbum.data.map((album:albumType) => {
-          album.userName = responseUser.data[album.userId-1].name.toLocaleLowerCase()
-        })
-        setDataAlbums(responseAlbum.data)
-        setFilteredAlbum(responseAlbum.data)
-        console.log(responseAlbum)
-        console.log(responseUser)
-      } catch (error) {
-        setError(error)
-      }
-      setLoading(false)
-    }
-    getAlbumUser()
-  }, [])
+    if(data) setFilteredAlbum(data.data)
+  },[data])
 
   return (
     <div className='main-page'>
@@ -66,6 +47,7 @@ const MainPage = () => {
             <Form.Control 
               type="text" 
               placeholder="Filter Album"
+              autoComplete='off'
               value={keyWord}
               onChange={handleChange} />
           </Form.Group>
@@ -77,7 +59,7 @@ const MainPage = () => {
               checked={filterType === 'album'}
               type='radio' 
               name='fileterType' 
-              onClick={() => setFilterType('album')} />
+              onChange={() => setFilterType('album')} />
             <Form.Check 
               inline 
               label="By user name"
@@ -85,7 +67,7 @@ const MainPage = () => {
               checked={filterType === 'user'}
               type='radio' 
               name='fileterType'
-              onClick={() => setFilterType('user')} />
+              onChange={() => setFilterType('user')} />
           </Form.Group>
         </Form>
         {loading && 
