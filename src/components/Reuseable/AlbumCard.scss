@@ -1,0 +1,14 @@
+.album-card{
+  text-transform: capitalize;
+  cursor: pointer;
+  .oneline{
+    font-weight: bold;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .card-hover:hover{
+    text-decoration: underline;
+  } 
+}

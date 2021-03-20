@@ -8,7 +8,7 @@ import {Container,
         Row,
         Col,
         Card} from 'react-bootstrap'
-import UserAlbumCard from './child/UserAlbumCard'
+import AlbumCard from '../Reuseable/AlbumCard'
 import {albumType} from '../../type'
 import Skeleton from '../Reuseable/Skeleton'
 
@@ -69,11 +69,12 @@ const UserPage = () => {
               <div className='sub-title'>{data.data.name}'s Albums</div>
               <div className="display-grid">
                 {data.data.userAlbum.map((album:albumType) => (
-                  <UserAlbumCard
+                  <AlbumCard
                     key={album.id}
                     id={album.id}
                     userId={album.userId}
-                    albumName={album.title}/>
+                    albumName={album.title}
+                    userName={data.data.name}/>
                 ))}
               </div>
             </Col>

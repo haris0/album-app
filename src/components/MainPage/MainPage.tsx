@@ -6,7 +6,7 @@ import Header from '../Reuseable/Header'
 import {Container,
         Form,} from 'react-bootstrap'
 import AlbumCardSkeleton from './child/AlbumCardSkeleton'
-import AlbumCard from './child/AlbumCard'
+import AlbumCard from '../Reuseable/AlbumCard'
 import ErrorText from '../Reuseable/ErrorText'
 
 const MainPage = () => {

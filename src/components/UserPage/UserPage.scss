@@ -15,6 +15,10 @@
     .user-name{
       font-weight: bold;
       font-size: x-large;
+      width: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .avatar{
@@ -40,23 +44,6 @@
   @media screen and (min-width: 768px) {
     .display-grid{
       grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .album-card{
-    text-transform: capitalize;
-    cursor: pointer;
-  
-    .card-hover:hover{
-      text-decoration: underline;
-    } 
-  
-    .oneline{
-      font-weight: bold;
-      width: inherit;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
   }
 }
