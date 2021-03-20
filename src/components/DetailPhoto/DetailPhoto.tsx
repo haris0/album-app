@@ -21,7 +21,7 @@ const DetailPhoto = () => {
         let response = await HTTP.get(photo+'/'+id)
         console.log(response)
       } catch (error) {
-        setError(error.data)
+        setError(error)
       }
       setLoading(false)
     }

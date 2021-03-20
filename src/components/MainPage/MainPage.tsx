@@ -27,8 +27,7 @@ const MainPage = () => {
         console.log(responseAlbum)
         console.log(responseUser)
       } catch (error) {
-        setError(error.data)
-        console.log(error.data)
+        setError(error)
       }
       setLoading(false)
     }
@@ -50,6 +49,9 @@ const MainPage = () => {
                 albumName={album.title}
                 userName={dataUsers[album.userId-1].name}/>
             ))
+          }
+          {!loading && error
+
           }
         </div>
       </Container>

@@ -21,7 +21,7 @@ const AlbumPage = () => {
         let response = await HTTP.get(albums+'/'+id+'/photos')
         console.log(response)
       } catch (error) {
-        setError(error.data)
+        setError(error)
       }
       setLoading(false)
     }

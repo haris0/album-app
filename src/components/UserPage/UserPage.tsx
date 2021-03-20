@@ -20,7 +20,7 @@ const UserPage = () => {
         let response = await HTTP.get(users+'/'+id)
         console.log(response)
       } catch (error) {
-        setError(error.data)
+        setError(error)
       }
       setLoading(false)
     }
