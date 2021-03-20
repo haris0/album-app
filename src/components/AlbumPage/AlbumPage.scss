@@ -1,0 +1,51 @@
+.album-page{
+  .cover{
+    height: 10rem;
+    background-color: gray;
+    color: white;
+    padding: 2.2rem 0;
+
+    .user-data{
+      cursor: pointer;
+      width: fit-content;
+    }
+    .user-data:hover{
+      text-decoration: underline;
+    }
+  }
+
+  .album-title{
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: xx-large;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .margin{
+    margin-bottom: 1.5rem;
+
+    .display-grid{
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 10px;
+    }
+    
+    @media screen and (min-width: 768px) {
+      .display-grid{
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
+
+  .photo-title{
+    text-transform: capitalize;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

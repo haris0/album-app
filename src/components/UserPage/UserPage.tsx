@@ -58,20 +58,10 @@ const UserPage = () => {
               <div className='sub-title'>Personal Data</div>
               <Card>
                 <Card.Body>
-                  <Row>
-                    <Col xs={4}>
-                      <div><b>City</b></div>
-                      <div><b>Company</b></div>
-                      <div><b>Email</b></div>
-                      <div><b>Phone</b></div>
-                    </Col>
-                    <Col>
-                      <div>: {data.data.address.city}</div>
-                      <div>: {data.data.company.name}</div>
-                      <div>: {data.data.email}</div>
-                      <div>: {data.data.phone}</div>
-                    </Col>
-                  </Row>
+                  <div><b>City</b> : {data.data.address.city}</div>
+                  <div><b>Company</b> : {data.data.company.name}</div>
+                  <div><b>Email</b> : {data.data.email}</div>
+                  <div><b>Phone</b> : {data.data.phone}</div>
                 </Card.Body>
               </Card>
             </Col>
