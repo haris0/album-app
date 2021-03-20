@@ -6,14 +6,14 @@ export const albums:string = "albums"
 export const users:string = "users"
 export const photo:string = "photos"
 
-export const HTTP = axios.create({
+const HTTP = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com/',
   timeout: 3000,
 });
 
-export const useFetch = (url:string, ref:any, initialValue:any) => {
-  const [data, setData] = useState<any>(initialValue);
-  const [error, setError] = useState<any>(null);
+export const useFetch = (url:string, ref:any) => {
+  const [data, setData] = useState<any>();
+  const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
