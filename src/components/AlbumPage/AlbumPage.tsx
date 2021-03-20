@@ -1,8 +1,7 @@
 import React,{useRef} from 'react'
 import './AlbumPage.scss'
 import { useParams } from "react-router-dom";
-import { photoType } from '../../type'
-import {useFetch, albums} from '../../services'
+import {useFetchAlbumPhotos} from '../../services'
 
 const AlbumPage = () => {
   interface ParamTypes {
@@ -10,7 +9,7 @@ const AlbumPage = () => {
   }
   const { id } = useParams<ParamTypes>()
   const isMounted = useRef(true);
-  const { loading, data , error } = useFetch(albums+'/'+id+'/photos', isMounted);
+  const { loading, data , error } = useFetchAlbumPhotos(id, isMounted);
   console.log(data)
 
   return (

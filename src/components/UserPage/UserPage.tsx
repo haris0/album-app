@@ -1,8 +1,7 @@
 import React,{useRef} from 'react'
 import './UserPage.scss'
-import { useParams } from "react-router-dom";
-import {userType} from '../../type'
-import {useFetch, users} from '../../services'
+import { useParams } from "react-router-dom"
+import {useFetchUser} from '../../services'
 
 const UserPage = () => {
   interface ParamTypes {
@@ -11,7 +10,7 @@ const UserPage = () => {
   const { id } = useParams<ParamTypes>()
 
   const isMounted = useRef(true);
-  const { loading, data , error } = useFetch(users+'/'+id, isMounted);
+  const { loading, data , error } = useFetchUser(id, isMounted);
   console.log(data)
 
   return (
