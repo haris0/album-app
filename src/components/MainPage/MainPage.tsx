@@ -6,6 +6,7 @@ import Header from '../Reuseable/Header'
 import {Container} from 'react-bootstrap'
 import AlbumCardSkeleton from './child/AlbumCardSkeleton'
 import AlbumCard from './child/AlbumCard'
+import ErrorText from '../Reuseable/ErrorText'
 
 const MainPage = () => {
 
@@ -38,22 +39,24 @@ const MainPage = () => {
     <div className='main-page'>
       <Header title='Album App'/>
       <Container className='margin'>
-        <div className="display-grid">
           {loading && 
-            <AlbumCardSkeleton/>
+            <div className="display-grid">
+              <AlbumCardSkeleton/>
+            </div>
           }
           {!loading && dataAlbums && dataUsers &&
-            dataAlbums.map(album => (
+            <div className="display-grid">
+            {dataAlbums.map(album => (
               <AlbumCard
                 keyItem={album.id}
                 albumName={album.title}
                 userName={dataUsers[album.userId-1].name}/>
-            ))
+            ))}
+            </div>
           }
-          {!loading && error
-
+          {!loading && error &&
+            <ErrorText/>
           }
-        </div>
       </Container>
     </div>
   )

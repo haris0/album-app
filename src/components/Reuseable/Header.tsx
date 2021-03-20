@@ -15,7 +15,7 @@ const Header = ({title}:props) => {
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand style={{cursor:'pointer'}}>{title}</Navbar.Brand>
+          <Navbar.Brand style={{cursor:'pointer', fontWeight:'bold'}}>{title}</Navbar.Brand>
             <Nav className="mr-auto">
             </Nav>
             <Nav>
