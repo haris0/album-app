@@ -7,13 +7,15 @@ import {Card} from 'react-bootstrap'
 import {useAddFavoritePhotos, 
         useCheckFavoritePhotos,
         useRemoveFavoritePhotos} from '../../context'
-
+import {useHistory} from 'react-router-dom'
 
 type props = {
   photoList: photoType[]
 }
 
 const PhotoCard = ({photoList}:props) => {
+
+  const history = useHistory()
 
   const favoritePhotos = useAddFavoritePhotos()
   const unfavoritePhotos = useRemoveFavoritePhotos()
@@ -26,6 +28,10 @@ const PhotoCard = ({photoList}:props) => {
   const handleUnFavPhoto = (id:number) =>{
     unfavoritePhotos(id)
   }
+  
+  const goToDeatilPhoto = (id:number) =>{
+    history.push('/photo/'+id)
+  }
 
   return (
     <div className='photo-card'>
@@ -34,9 +40,17 @@ const PhotoCard = ({photoList}:props) => {
           <Card key={photo.id}>
             <Card.Img variant="top" src={photo.thumbnailUrl} />
             <Card.Body>
-              <Card.Subtitle className='photo-title'>{photo.title}</Card.Subtitle>
+              <Card.Subtitle 
+              className='photo-title'
+              onClick={()=> goToDeatilPhoto(photo.id)}>
+                {photo.title}
+              </Card.Subtitle>
               <div className="action">
-                <div className="comment">No Commnent</div>
+                <div 
+                  className="comment"
+                  onClick={()=> goToDeatilPhoto(photo.id)}>
+                    No Commnent
+                  </div>
                 { checkFavorite(photo.id)?
                   <img 
                   className="bookmark" 
