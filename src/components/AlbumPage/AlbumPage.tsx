@@ -48,7 +48,7 @@ const AlbumPage = () => {
               By {data.data.userData.name} ({data.data.userData.email})
             </div>
           </AlbumCover>
-          <Container className='margin' style={{marginTop:'20px'}}>
+          <Container style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
             <PhotoCard photoList={data.data.photos}/>
           </Container>
         </>

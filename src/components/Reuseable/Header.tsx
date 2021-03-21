@@ -8,10 +8,13 @@ import './Header.scss'
 import {useHistory} from "react-router-dom";
 import {useCountFavoritePhotos} from '../../context'
 
-const Header = () => {
+type props = {
+  showFav?: boolean
+}
+
+const Header = ({showFav=true}:props) => {
 
   const favCount = useCountFavoritePhotos()
-  
   const history = useHistory()
   const goToHome = () =>{
     if(window.location.pathname !== '/'){
@@ -25,18 +28,22 @@ const Header = () => {
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand 
+          <Navbar.Brand
             style={{cursor:'pointer', fontWeight:'bold'}}
             onClick={goToHome}>
             Album App
           </Navbar.Brand>
-          <Nav className="mr-auto">
-          </Nav>
-          <Nav>
-            <Button className='fav-button' onClick={goToFavorite}>
-              Fav Photos <Badge variant="light">{favCount}</Badge>
-            </Button>
-          </Nav>
+          {showFav &&
+            <>
+              <Nav className="mr-auto">
+              </Nav>
+              <Nav>
+                <Button className='fav-button' onClick={goToFavorite}>
+                  Fav Photos <Badge variant="light">{favCount}</Badge>
+                </Button>
+              </Nav>
+            </>
+          }
         </Container>
       </Navbar>
     </div>
