@@ -6,8 +6,11 @@ import {Navbar,
         Container} from 'react-bootstrap'
 import './Header.scss'
 import {useHistory} from "react-router-dom";
+import {useCountFavoritePhotos} from '../../context'
 
 const Header = () => {
+
+  const favCount = useCountFavoritePhotos()
   
   const history = useHistory()
   const goToHome = () =>{
@@ -31,7 +34,7 @@ const Header = () => {
           </Nav>
           <Nav>
             <Button className='fav-button' onClick={goToFavorite}>
-              Fav Photos <Badge variant="light">0</Badge>
+              Fav Photos <Badge variant="light">{favCount}</Badge>
             </Button>
           </Nav>
         </Container>

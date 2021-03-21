@@ -8,7 +8,11 @@ import ErrorText from '../Reuseable/ErrorText'
 import {photoType} from '../../types'
 import {useHistory} from "react-router-dom";
 import bookmark from '../../assets/bookmark.png'
+import bookmarked from '../../assets/bookmarked.png'
 import Skeleton from '../Reuseable/Skeleton'
+import {useAddFavoritePhotos, 
+        useCheckFavoritePhotos,
+        useRemoveFavoritePhotos} from '../../context'
 
 const AlbumPage = () => {
   const history = useHistory()
@@ -19,6 +23,18 @@ const AlbumPage = () => {
   const isMounted = useRef(true);
   const { loading, data , error } = useFetchAlbumPhotos(id, isMounted);
   console.log(data)
+
+  const favoritePhotos = useAddFavoritePhotos()
+  const unfavoritePhotos = useRemoveFavoritePhotos()
+  const checkFavorite = useCheckFavoritePhotos()
+
+  const handleFavPhoto = (photos:photoType) =>{
+    favoritePhotos(photos)
+  }
+
+  const handleUnFavPhoto = (id:number) =>{
+    unfavoritePhotos(id)
+  }
 
   const goToUserPage = (id:string) =>{
     history.push('/user/'+id)
@@ -45,7 +61,7 @@ const AlbumPage = () => {
               <div 
                 className="user-data"
                 onClick={()=> goToUserPage(data.data.userId)}>
-                By {data.data.userData.name} ({data.data.userData.email}) 
+                By {data.data.userData.name} ({data.data.userData.email})
               </div>
             </>
           }
@@ -56,13 +72,24 @@ const AlbumPage = () => {
         <Container className='margin' style={{marginTop:'20px'}}>
           <div className="display-grid">
             {data.data.photos.map((photo:photoType) => (
-              <Card>
+              <Card key={photo.id}>
                 <Card.Img variant="top" src={photo.thumbnailUrl} />
                 <Card.Body>
                   <Card.Subtitle className='photo-title'>{photo.title}</Card.Subtitle>
                   <div className="action">
                     <div className="comment">No Commnent</div>
-                    <img className="bookmark" src={bookmark} alt="Bookmark"/>
+                    { checkFavorite(photo.id)?
+                      <img 
+                      className="bookmark" 
+                      src={bookmarked} 
+                      alt="Bookmarked"
+                      onClick={() => handleUnFavPhoto(photo.id)}/> :
+                      <img 
+                      className="bookmark"
+                      src={bookmark} 
+                      alt="Bookmark"
+                      onClick={() => handleFavPhoto(photo)}/>
+                    }
                   </div>
                 </Card.Body>
               </Card>

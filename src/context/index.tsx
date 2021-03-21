@@ -4,7 +4,7 @@ import { favoriteContextType, photoType } from '../types'
 const contextDefaultValues: favoriteContextType = {
   favoritePhotos: [],
   addFavoritePhoto: () => {},
-  removeFavoritePhoto: () => {}
+  removeFavoritePhoto: () => {},
 };
 
 const FavoriteContex = createContext<favoriteContextType>(
@@ -21,7 +21,7 @@ const FavoriteContexProvider = (props:any) => {
     <FavoriteContex.Provider value={{
       favoritePhotos,
       addFavoritePhoto,
-      removeFavoritePhoto
+      removeFavoritePhoto,
     }}>
       {props.children}
     </FavoriteContex.Provider>
@@ -48,6 +48,16 @@ export const useRemoveFavoritePhotos = () => {
   return (id:number) => {
     removeFavoritePhoto(id);
   };
+}
+
+export const useCheckFavoritePhotos = () => {
+  const {favoritePhotos} = useContext(FavoriteContex)
+  return (id:number) => favoritePhotos.some((photo) => photo.id === id)
+}
+
+export const useCountFavoritePhotos = () => {
+  const {favoritePhotos} = useContext(FavoriteContex)
+  return favoritePhotos.length
 }
 
 export default FavoriteContexProvider
