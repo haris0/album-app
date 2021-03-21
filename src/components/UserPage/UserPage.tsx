@@ -9,7 +9,7 @@ import {Container,
         Col,
         Card} from 'react-bootstrap'
 import AlbumCard from '../Reuseable/AlbumCard'
-import {albumType} from '../../type'
+import {albumType} from '../../types'
 import Skeleton from '../Reuseable/Skeleton'
 
 const UserPage = () => {

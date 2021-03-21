@@ -36,3 +36,9 @@ export interface photoType{
   url: string,
   thumbnailUrl: string,
 }
+
+export interface favoriteContextType{
+  favoritePhotos : photoType[],
+  addFavoritePhoto : (photo: photoType) => void
+  removeFavoritePhoto : (id: number) => void
+}

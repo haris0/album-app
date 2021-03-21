@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './MainPage.scss'
 import {useFetchAlbum} from '../../services'
-import {albumType} from '../../type'
+import {albumType} from '../../types'
 import Header from '../Reuseable/Header'
 import {Container,
         Form,} from 'react-bootstrap'

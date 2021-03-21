@@ -5,7 +5,7 @@ import {useFetchAlbumPhotos} from '../../services'
 import Header from '../Reuseable/Header'
 import {Container, Card} from 'react-bootstrap'
 import ErrorText from '../Reuseable/ErrorText'
-import {photoType} from '../../type'
+import {photoType} from '../../types'
 import {useHistory} from "react-router-dom";
 import bookmark from '../../assets/bookmark.png'
 import Skeleton from '../Reuseable/Skeleton'
