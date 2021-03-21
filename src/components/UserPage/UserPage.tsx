@@ -8,8 +8,8 @@ import {Container,
         Row,
         Col,
         Card} from 'react-bootstrap'
-import UserAlbumCard from './child/UserAlbumCard'
-import {albumType} from '../../type'
+import AlbumCard from '../Reuseable/AlbumCard'
+import {albumType} from '../../types'
 import Skeleton from '../Reuseable/Skeleton'
 
 const UserPage = () => {
@@ -58,20 +58,10 @@ const UserPage = () => {
               <div className='sub-title'>Personal Data</div>
               <Card>
                 <Card.Body>
-                  <Row>
-                    <Col xs={4}>
-                      <div><b>City</b></div>
-                      <div><b>Company</b></div>
-                      <div><b>Email</b></div>
-                      <div><b>Phone</b></div>
-                    </Col>
-                    <Col>
-                      <div>: {data.data.address.city}</div>
-                      <div>: {data.data.company.name}</div>
-                      <div>: {data.data.email}</div>
-                      <div>: {data.data.phone}</div>
-                    </Col>
-                  </Row>
+                  <div><b>City</b> : {data.data.address.city}</div>
+                  <div><b>Company</b> : {data.data.company.name}</div>
+                  <div><b>Email</b> : {data.data.email}</div>
+                  <div><b>Phone</b> : {data.data.phone}</div>
                 </Card.Body>
               </Card>
             </Col>
@@ -79,11 +69,12 @@ const UserPage = () => {
               <div className='sub-title'>{data.data.name}'s Albums</div>
               <div className="display-grid">
                 {data.data.userAlbum.map((album:albumType) => (
-                  <UserAlbumCard
+                  <AlbumCard
                     key={album.id}
                     id={album.id}
                     userId={album.userId}
-                    albumName={album.title}/>
+                    albumName={album.title}
+                    userName={data.data.name}/>
                 ))}
               </div>
             </Col>

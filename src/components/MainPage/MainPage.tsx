@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './MainPage.scss'
 import {useFetchAlbum} from '../../services'
-import {albumType} from '../../type'
+import {albumType} from '../../types'
 import Header from '../Reuseable/Header'
 import {Container,
         Form,} from 'react-bootstrap'
 import AlbumCardSkeleton from './child/AlbumCardSkeleton'
-import AlbumCard from './child/AlbumCard'
+import AlbumCard from '../Reuseable/AlbumCard'
 import ErrorText from '../Reuseable/ErrorText'
 
 const MainPage = () => {

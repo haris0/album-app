@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useState, useEffect} from 'react'
-import {albumType} from '../type'
+import {albumType} from '../types'
 
 export const albums:string = "albums"
 export const users:string = "users"

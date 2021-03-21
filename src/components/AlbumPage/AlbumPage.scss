@@ -1,0 +1,39 @@
+.album-page{
+  .cover{
+    height: 10rem;
+    background-color: gray;
+    color: white;
+    padding: 2.2rem 0;
+
+    .user-data{
+      cursor: pointer;
+      width: fit-content;
+    }
+    .user-data:hover{
+      text-decoration: underline;
+    }
+  }
+
+  .margin{
+    margin-bottom: 1.5rem;
+  }
+  .action{
+    margin-top: 10px;
+    line-height: 22px;
+
+    .comment{
+      font-size: 12px;
+      color: gray;
+      float: left;
+      cursor: pointer;
+    }
+    .comment:hover{
+      text-decoration: underline;
+    }
+    .bookmark{
+      width: 17px;
+      float: right;
+      cursor: pointer;
+    }
+  }
+}
