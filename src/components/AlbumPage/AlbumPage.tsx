@@ -8,8 +8,11 @@ import ErrorText from '../Reuseable/ErrorText'
 import Skeleton from '../Reuseable/Skeleton'
 import PhotoCard from '../Reuseable/PhotoCard'
 import AlbumCover from '../Reuseable/AlbumCover';
+import {useHistory} from "react-router-dom"
 
 const AlbumPage = () => {
+
+  const history = useHistory()
   interface ParamTypes {
     id: string
   }
@@ -18,31 +21,36 @@ const AlbumPage = () => {
   const { loading, data , error } = useFetchAlbumPhotos(id, isMounted);
   console.log(data)
 
+  const goToUserPage = (id:number) =>{
+    history.push('/user/'+id)
+  }
+
   return (
     <div className='album-page'>
       <Header/>
-      <div className="cover">
-        <Container>
-          {loading &&
-            <>
-              <div>
-                <Skeleton widthSize='350px' heigthSize='40px'/>
-              </div>
-              <div style={{marginTop:'15px'}}>
-                <Skeleton widthSize='120px' heigthSize='20px'/>
-              </div>
-            </>
-          }
-          {!loading && data &&
-            <AlbumCover album={data.data} user={data.data.userData} />
-          }
-        </Container>
-      </div>
+      {loading &&
+        <AlbumCover>
+          <div>
+            <Skeleton widthSize='350px' heigthSize='40px'/>
+          </div>
+          <div style={{marginTop:'15px'}}>
+            <Skeleton widthSize='120px' heigthSize='20px'/>
+          </div>
+        </AlbumCover>
+      }
       {!loading && data &&
         <>
-        <Container className='margin' style={{marginTop:'20px'}}>
-          <PhotoCard photoList={data.data.photos}/>
-        </Container>
+          <AlbumCover>
+            <div className="album-title">{data.data.title}</div>
+            <div 
+              className="user-data"
+              onClick={()=> goToUserPage(data.data.userId)}>
+              By {data.data.userData.name} ({data.data.userData.email})
+            </div>
+          </AlbumCover>
+          <Container style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
+            <PhotoCard photoList={data.data.photos}/>
+          </Container>
         </>
       }
       {!loading && error &&

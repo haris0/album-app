@@ -1,39 +1,19 @@
 .album-page{
-  .cover{
-    height: 10rem;
-    background-color: gray;
-    color: white;
-    padding: 2.2rem 0;
-
-    .user-data{
-      cursor: pointer;
-      width: fit-content;
-    }
-    .user-data:hover{
-      text-decoration: underline;
-    }
+  .album-title{
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: xx-large;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .margin{
-    margin-bottom: 1.5rem;
+  .user-data{
+    cursor: pointer;
+    width: fit-content;
   }
-  .action{
-    margin-top: 10px;
-    line-height: 22px;
-
-    .comment{
-      font-size: 12px;
-      color: gray;
-      float: left;
-      cursor: pointer;
-    }
-    .comment:hover{
-      text-decoration: underline;
-    }
-    .bookmark{
-      width: 17px;
-      float: right;
-      cursor: pointer;
-    }
+  .user-data:hover{
+    text-decoration: underline;
   }
 }

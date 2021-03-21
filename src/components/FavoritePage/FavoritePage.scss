@@ -1,0 +1,23 @@
+.favorite-page{
+  .album-title{
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: xx-large;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .no-favorite{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: lightgray;
+  }
+
+  .img-bookmark{
+    width: 3.5rem;
+    margin-top: 2rem;
+  }
+}
