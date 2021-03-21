@@ -7,6 +7,7 @@ import {Container, Card} from 'react-bootstrap'
 import ErrorText from '../Reuseable/ErrorText'
 import {photoType} from '../../type'
 import {useHistory} from "react-router-dom";
+import bookmark from '../../assets/bookmark.png'
 
 const AlbumPage = () => {
   const history = useHistory()
@@ -47,6 +48,10 @@ const AlbumPage = () => {
                 <Card.Img variant="top" src={photo.thumbnailUrl} />
                 <Card.Body>
                   <Card.Subtitle className='photo-title'>{photo.title}</Card.Subtitle>
+                  <div className="action">
+                    <div className="comment">No Commnent</div>
+                    <img className="bookmark" src={bookmark} alt="Bookmark"/>
+                  </div>
                 </Card.Body>
               </Card>
             ))}
