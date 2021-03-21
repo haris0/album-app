@@ -5,7 +5,7 @@ import AlbumCover from '../Reuseable/AlbumCover'
 import Header from '../Reuseable/Header'
 import {Container} from 'react-bootstrap'
 import PhotoCard from '../Reuseable/PhotoCard'
-import bookmark from '../../assets/bookmark.png'
+import bookmarked from '../../assets/bookmarked.png'
 
 const FavoritePage = () => {
 
@@ -27,7 +27,7 @@ const FavoritePage = () => {
             <br/>
             <img 
               className="img-bookmark" 
-              src={bookmark} 
+              src={bookmarked} 
               alt="Bookmark"/>
           </div>
         }
