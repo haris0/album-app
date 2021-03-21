@@ -1,9 +1,20 @@
 .album-page{
-  .cover{
-    height: 10rem;
-    background-color: gray;
-    color: white;
-    padding: 2.2rem 0;
+  .album-title{
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: xx-large;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .user-data{
+    cursor: pointer;
+    width: fit-content;
+  }
+  .user-data:hover{
+    text-decoration: underline;
   }
 
   .margin{
