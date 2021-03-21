@@ -3,19 +3,13 @@ import './AlbumPage.scss'
 import { useParams } from "react-router-dom";
 import {useFetchAlbumPhotos} from '../../services'
 import Header from '../Reuseable/Header'
-import {Container, Card} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import ErrorText from '../Reuseable/ErrorText'
-import {photoType} from '../../types'
-import {useHistory} from "react-router-dom";
-import bookmark from '../../assets/bookmark.png'
-import bookmarked from '../../assets/bookmarked.png'
 import Skeleton from '../Reuseable/Skeleton'
-import {useAddFavoritePhotos, 
-        useCheckFavoritePhotos,
-        useRemoveFavoritePhotos} from '../../context'
+import PhotoCard from '../Reuseable/PhotoCard'
+import AlbumCover from '../Reuseable/AlbumCover';
 
 const AlbumPage = () => {
-  const history = useHistory()
   interface ParamTypes {
     id: string
   }
@@ -24,22 +18,6 @@ const AlbumPage = () => {
   const { loading, data , error } = useFetchAlbumPhotos(id, isMounted);
   console.log(data)
 
-  const favoritePhotos = useAddFavoritePhotos()
-  const unfavoritePhotos = useRemoveFavoritePhotos()
-  const checkFavorite = useCheckFavoritePhotos()
-
-  const handleFavPhoto = (photos:photoType) =>{
-    favoritePhotos(photos)
-  }
-
-  const handleUnFavPhoto = (id:number) =>{
-    unfavoritePhotos(id)
-  }
-
-  const goToUserPage = (id:string) =>{
-    history.push('/user/'+id)
-  }
-
   return (
     <div className='album-page'>
       <Header/>
@@ -47,7 +25,7 @@ const AlbumPage = () => {
         <Container>
           {loading &&
             <>
-              <div className="album-title">
+              <div>
                 <Skeleton widthSize='350px' heigthSize='40px'/>
               </div>
               <div style={{marginTop:'15px'}}>
@@ -56,45 +34,14 @@ const AlbumPage = () => {
             </>
           }
           {!loading && data &&
-            <>
-              <div className="album-title">{data.data.title}</div>
-              <div 
-                className="user-data"
-                onClick={()=> goToUserPage(data.data.userId)}>
-                By {data.data.userData.name} ({data.data.userData.email})
-              </div>
-            </>
+            <AlbumCover album={data.data} user={data.data.userData} />
           }
         </Container>
       </div>
       {!loading && data &&
         <>
         <Container className='margin' style={{marginTop:'20px'}}>
-          <div className="display-grid">
-            {data.data.photos.map((photo:photoType) => (
-              <Card key={photo.id}>
-                <Card.Img variant="top" src={photo.thumbnailUrl} />
-                <Card.Body>
-                  <Card.Subtitle className='photo-title'>{photo.title}</Card.Subtitle>
-                  <div className="action">
-                    <div className="comment">No Commnent</div>
-                    { checkFavorite(photo.id)?
-                      <img 
-                      className="bookmark" 
-                      src={bookmarked} 
-                      alt="Bookmarked"
-                      onClick={() => handleUnFavPhoto(photo.id)}/> :
-                      <img 
-                      className="bookmark"
-                      src={bookmark} 
-                      alt="Bookmark"
-                      onClick={() => handleFavPhoto(photo)}/>
-                    }
-                  </div>
-                </Card.Body>
-              </Card>
-            ))}
-          </div>
+          <PhotoCard photoList={data.data.photos}/>
         </Container>
         </>
       }
