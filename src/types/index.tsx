@@ -31,6 +31,7 @@ export interface userType{
 
 export interface photoType{
   albumId: number,
+  albumName?: string,
   id: number,
   title: string,
   url: string,
