@@ -40,7 +40,7 @@ const AlbumPage = () => {
       }
       {!loading && data &&
         <>
-          <AlbumCover>
+          <AlbumCover userId={parseInt(data.data.userData.id)}>
             <div className="album-title">{data.data.title}</div>
             <div 
               className="user-data"

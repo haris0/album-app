@@ -2,6 +2,7 @@ import React from 'react'
 import {Card} from 'react-bootstrap'
 import {useHistory} from "react-router-dom";
 import './AlbumCard.scss'
+import {color} from '../../color'
 
 type props ={
   id:number,
@@ -10,7 +11,7 @@ type props ={
   userName:string
 }
 
-const AlbumCard = ({id, userId, albumName,userName}:props) => {
+const AlbumCard = ({id, userId, albumName, userName}:props) => {
   const history = useHistory()
 
   const goToAlbumPage = () =>{
@@ -27,7 +28,10 @@ const AlbumCard = ({id, userId, albumName,userName}:props) => {
   return (
     <>
       <Card className='album-card'>
-        <Card.Header onClick={goToAlbumPage} className='card-hover'>
+        <Card.Header 
+          onClick={goToAlbumPage} 
+          className='card-hover'
+          style={{backgroundColor:color[userId-1]}}>
           <div className="oneline">{albumName}</div>
         </Card.Header>
         <Card.Body onClick={goToUserPage} className='card-hover'>
