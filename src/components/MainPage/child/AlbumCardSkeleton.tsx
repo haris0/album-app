@@ -5,7 +5,7 @@ import {Card} from 'react-bootstrap'
 const AlbumCardSkeleton = () => {
   return (
     <>
-      {[...Array(8)].map((x, i) =>
+      {[...Array(8)].map(i =>
           <Card key={i}>
           <Card.Header>
             <Skeleton widthSize='100%' heigthSize='20px'/>
