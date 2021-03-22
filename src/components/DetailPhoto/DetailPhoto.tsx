@@ -39,8 +39,9 @@ const convertDate =(dateComment:Date)=>{
 }
 
 const scrollBottom = () =>{
-  console.log("bottom")
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  setTimeout(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  }, 1000);
 };
 
 const DetailPhoto = () => {
@@ -62,18 +63,21 @@ const DetailPhoto = () => {
 
   const handleSupmit = (e:any) =>{
     e.preventDefault();
-    let currentDate = new Date()
-    let commentData:commentType = {
-      comment:commentInput,
-      date:currentDate
+    if(commentInput !== ""){
+      let currentDate = new Date()
+      let commentData:commentType = {
+        comment:commentInput,
+        date:currentDate
+      }
+      addComment(parseInt(id), commentData)
+      setCommentInput('')
+      scrollBottom()
     }
-    addComment(parseInt(id), commentData)
-    setCommentInput('')
   }
 
   useEffect(()=>{
     scrollBottom()
-  },[commentThisPhoto])
+  },[])
 
   return (
     <div className='detail-photo'>
@@ -103,7 +107,7 @@ const DetailPhoto = () => {
                   comments.map((comment, idx)=>(
                     <div className="comment" key={idx}>
                       <div className="name">Anoniymous | {convertDate(comment.date)}</div>
-                      <div className="commnet-text">{comment.comment}</div>
+                      <p className="commnet-text">{comment.comment}</p>
                       <hr/>
                     </div>
                   )) :
@@ -122,12 +126,13 @@ const DetailPhoto = () => {
                   aria-label="Comment"
                   value={commentInput}
                   onChange={handleInput}
+                  className='no-outline'
                 />
                 <InputGroup.Append>
                   <Button 
                     variant="outline-secondary" 
                     type='submit'
-                    className='send-button'>
+                    className='send-button no-outline'>
                     <img src={send} alt="send" className='send-img'/>
                   </Button>
                 </InputGroup.Append>

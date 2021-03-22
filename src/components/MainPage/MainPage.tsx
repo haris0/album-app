@@ -49,7 +49,8 @@ const MainPage = () => {
               placeholder="Filter Album"
               autoComplete='off'
               value={keyWord}
-              onChange={handleChange} />
+              onChange={handleChange} 
+              className='no-outline'/>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlRadio">
             <Form.Check 

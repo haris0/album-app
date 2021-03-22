@@ -30,6 +30,10 @@
         .name{
           font-weight: bold;
         }
+
+        .commnet-text{
+          word-wrap: break-word;
+        }
       }
     }
   }
@@ -43,6 +47,12 @@
 
     .margin-input{
       margin-bottom: 0px !important;
+
+      .no-outline:focus{
+        outline:0px !important;
+        -webkit-appearance:none;
+        box-shadow: none !important;
+      }
 
       .send-button{
         padding: 0px;
