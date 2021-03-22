@@ -5,11 +5,9 @@
   }
 
   div.user-data{
-    display: flex;
-
     div.margin-left{
-      margin-top: 7px;
-      margin-left: 20px;
+      padding-top: 13px;
+      padding-left: 110px;
     }
 
     .user-name{
@@ -22,6 +20,7 @@
     }
 
     .avatar{
+      float: left;
       width: 90px;
       height: 90px;
       border-radius: 50px;

@@ -24,6 +24,20 @@
     text-decoration: underline;
   }
 
+  .album-name{
+    margin-top: 5px;
+    text-transform: capitalize;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .album-name:hover{
+    text-decoration: underline;
+  }
+
   .action{
     margin-top: 10px;
     line-height: 22px;

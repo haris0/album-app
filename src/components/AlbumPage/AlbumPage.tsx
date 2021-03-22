@@ -31,16 +31,16 @@ const AlbumPage = () => {
       {loading &&
         <AlbumCover>
           <div>
-            <Skeleton widthSize='350px' heigthSize='40px'/>
+            <Skeleton widthSize='80%' heigthSize='40px'/>
           </div>
           <div style={{marginTop:'15px'}}>
-            <Skeleton widthSize='120px' heigthSize='20px'/>
+            <Skeleton widthSize='30%' heigthSize='20px'/>
           </div>
         </AlbumCover>
       }
       {!loading && data &&
         <>
-          <AlbumCover>
+          <AlbumCover userId={parseInt(data.data.userData.id)}>
             <div className="album-title">{data.data.title}</div>
             <div 
               className="user-data"
@@ -49,7 +49,7 @@ const AlbumPage = () => {
             </div>
           </AlbumCover>
           <Container style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
-            <PhotoCard photoList={data.data.photos}/>
+            <PhotoCard photoList={data.data.photos} albumName={data.data.title}/>
           </Container>
         </>
       }

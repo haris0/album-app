@@ -24,7 +24,7 @@ export const useFetchAlbum = (ref:any) => {
               HTTP.get(albums),
               HTTP.get(users)
           ])
-          responseAlbums.data.map((album:albumType) => {
+          responseAlbums.data.forEach((album:albumType) => {
             album.userName = responseUser.data[album.userId-1].name.toLocaleLowerCase()
           })
           setData(responseAlbums);

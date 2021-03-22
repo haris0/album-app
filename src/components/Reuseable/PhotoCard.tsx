@@ -11,10 +11,12 @@ import { useGetCountById } from '../../context/CommentContex'
 import {useHistory} from 'react-router-dom'
 
 type props = {
-  photoList: photoType[]
+  photoList: photoType[],
+  albumName?:string,
+  showAlbum?:boolean
 }
 
-const PhotoCard = ({photoList}:props) => {
+const PhotoCard = ({photoList, albumName, showAlbum=false}:props) => {
 
   const history = useHistory()
 
@@ -24,6 +26,7 @@ const PhotoCard = ({photoList}:props) => {
   const getCountById = useGetCountById()
 
   const handleFavPhoto = (photos:photoType) =>{
+    photos.albumName = albumName
     favoritePhotos(photos)
   }
 
@@ -35,6 +38,10 @@ const PhotoCard = ({photoList}:props) => {
     history.push('/photo/'+id)
   }
 
+  const goToAlbum = (id:number) =>{
+    history.push('/album/'+id)
+  }
+
   return (
     <div className='photo-card'>
       <div className="display-grid">
@@ -43,10 +50,17 @@ const PhotoCard = ({photoList}:props) => {
             <Card.Img variant="top" src={photo.thumbnailUrl} />
             <Card.Body>
               <Card.Subtitle 
-              className='photo-title'
-              onClick={()=> goToDeatilPhoto(photo.id)}>
+                className='photo-title'
+                onClick={()=> goToDeatilPhoto(photo.id)}>
                 {photo.title}
               </Card.Subtitle>
+              {photo.albumName && showAlbum &&
+                <Card.Subtitle 
+                  className='album-name'
+                  onClick={()=> goToAlbum(photo.albumId)}>
+                  Album : {photo.albumName}
+                </Card.Subtitle>
+              }
               <div className="action">
                 <div 
                   className="comment"

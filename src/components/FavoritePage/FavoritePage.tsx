@@ -21,7 +21,7 @@ const FavoritePage = () => {
       </AlbumCover>
       <Container style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
         {favoritePhotos.length > 0 ?
-          <PhotoCard photoList={favoritePhotos}/> :
+          <PhotoCard photoList={favoritePhotos} showAlbum={true}/> :
           <div className="no-favorite">
             You don't have a favorite photo
             <br/>
