@@ -50,6 +50,7 @@ const UserPage = () => {
               <div className="top user-name">{data.data.name}</div>
               <div>{data.data.website}</div>
             </div>
+            <div style={{clear: "left"}}/>
           </div>
           <hr/>
           <div>
