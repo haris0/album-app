@@ -23,6 +23,7 @@ const CommentContexProvider = (props:any) => {
     let comment = comments.find((comment) => comment.photoId === photoId)
     if(comment){
       comment.comments.push(newComment)
+      localStorage.setItem("commentPhoto", JSON.stringify(comments));
     }else{
       setComments((comment) => [...comment, {
         photoId:photoId,

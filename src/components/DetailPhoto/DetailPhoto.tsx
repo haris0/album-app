@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import './DetailPhoto.scss'
 import { useParams } from "react-router-dom"
 import {useFetchPhoto} from '../../services'
@@ -13,8 +13,7 @@ import { Container,
 import send from '../../assets/send.png'
 import ErrorText from '../Reuseable/ErrorText'
 import DetailPhotoSkeleton from './child/DetailPhotoSkeleton'
-import { useComments, 
-         useAddComments,
+import { useAddComments,
          useGetCommentById } from '../../context/CommentContex'
 import {commentType} from '../../types'
 
@@ -39,6 +38,11 @@ const convertDate =(dateComment:Date)=>{
   return date+" "+months[monthsIdx]+" "+year
 }
 
+const scrollBottom = () =>{
+  console.log("bottom")
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+};
+
 const DetailPhoto = () => {
   interface ParamTypes {
     id: string
@@ -48,7 +52,6 @@ const DetailPhoto = () => {
   const { loading, data , error } = useFetchPhoto(id, isMounted);
   console.log(data)
 
-  const allComment = useComments() 
   const addComment = useAddComments()
   const commentThisPhoto = useGetCommentById(parseInt(id))
   let comments:commentType[] = []
@@ -67,6 +70,10 @@ const DetailPhoto = () => {
     addComment(parseInt(id), commentData)
     setCommentInput('')
   }
+
+  useEffect(()=>{
+    scrollBottom()
+  },[commentThisPhoto])
 
   return (
     <div className='detail-photo'>
