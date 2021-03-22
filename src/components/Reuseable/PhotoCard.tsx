@@ -7,6 +7,7 @@ import {Card} from 'react-bootstrap'
 import {useAddFavoritePhotos, 
         useCheckFavoritePhotos,
         useRemoveFavoritePhotos} from '../../context/FavoriteContex'
+import { useGetCountById } from '../../context/CommentContex'
 import {useHistory} from 'react-router-dom'
 
 type props = {
@@ -20,6 +21,7 @@ const PhotoCard = ({photoList}:props) => {
   const favoritePhotos = useAddFavoritePhotos()
   const unfavoritePhotos = useRemoveFavoritePhotos()
   const checkFavorite = useCheckFavoritePhotos()
+  const getCountById = useGetCountById()
 
   const handleFavPhoto = (photos:photoType) =>{
     favoritePhotos(photos)
@@ -49,7 +51,7 @@ const PhotoCard = ({photoList}:props) => {
                 <div 
                   className="comment"
                   onClick={()=> goToDeatilPhoto(photo.id)}>
-                    No Commnent
+                    {getCountById(photo.id)} Commnent
                   </div>
                 { checkFavorite(photo.id)?
                   <img 

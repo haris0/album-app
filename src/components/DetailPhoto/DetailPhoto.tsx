@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React,{useRef, useState} from 'react'
 import './DetailPhoto.scss'
 import { useParams } from "react-router-dom"
 import {useFetchPhoto} from '../../services'
@@ -13,6 +13,31 @@ import { Container,
 import send from '../../assets/send.png'
 import ErrorText from '../Reuseable/ErrorText'
 import DetailPhotoSkeleton from './child/DetailPhotoSkeleton'
+import { useComments, 
+         useAddComments,
+         useGetCommentById } from '../../context/CommentContex'
+import {commentType} from '../../types'
+
+const convertDate =(dateComment:Date)=>{
+  let dateFull = new Date(dateComment)
+  let months = ["Januari ", 
+                "Fabruari", 
+                "Maret",
+                "April",
+                "Mei", 
+                "Juni", 
+                "July", 
+                "Agustus", 
+                "September", 
+                "Oktober", 
+                "November", 
+                "Desember"]
+  let year = dateFull.getFullYear()
+  let date = dateFull.getDate()
+  let monthsIdx = dateFull.getMonth()
+
+  return date+" "+months[monthsIdx]+" "+year
+}
 
 const DetailPhoto = () => {
   interface ParamTypes {
@@ -23,23 +48,25 @@ const DetailPhoto = () => {
   const { loading, data , error } = useFetchPhoto(id, isMounted);
   console.log(data)
 
+  const allComment = useComments() 
+  const addComment = useAddComments()
+  const commentThisPhoto = useGetCommentById(parseInt(id))
+  let comments:commentType[] = []
+  if(commentThisPhoto) comments = commentThisPhoto.comments
+
+  const [commentInput, setCommentInput] = useState<string>('')
+  const handleInput = (e:any) => setCommentInput(e.target.value)
+
   const handleSupmit = (e:any) =>{
     e.preventDefault();
-    console.log('Komen')
+    let currentDate = new Date()
+    let commentData:commentType = {
+      comment:commentInput,
+      date:currentDate
+    }
+    addComment(parseInt(id), commentData)
+    setCommentInput('')
   }
-
-  const comments = [
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, . Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, . Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita ne hoc quidem modo paria peccata sunt'},
-    {date:'1 Maret 2021', comment:'Lorem ipsum dolor sit amet, . Ita ne hoc quidem modo paria peccata sunt'},
-  ]
 
   return (
     <div className='detail-photo'>
@@ -65,13 +92,16 @@ const DetailPhoto = () => {
                 <div className="comment-title">
                   Photo's Comment
                 </div>
-                {comments.map((comment, idx)=>(
-                  <div className="comment" key={idx}>
-                    <div className="name">Anoniymous | {comment.date}</div>
-                    <div className="commnet-text">{comment.comment}</div>
-                    <hr/>
-                  </div>
-                ))}
+                {comments.length > 0 ?
+                  comments.map((comment, idx)=>(
+                    <div className="comment" key={idx}>
+                      <div className="name">Anoniymous | {convertDate(comment.date)}</div>
+                      <div className="commnet-text">{comment.comment}</div>
+                      <hr/>
+                    </div>
+                  )) :
+                  <div><b>No comment</b></div>
+                }
               </div>
             </Col>
           </Row>
@@ -83,6 +113,8 @@ const DetailPhoto = () => {
                 <FormControl
                   placeholder="Comment"
                   aria-label="Comment"
+                  value={commentInput}
+                  onChange={handleInput}
                 />
                 <InputGroup.Append>
                   <Button 
