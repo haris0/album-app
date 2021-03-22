@@ -31,10 +31,10 @@ const AlbumPage = () => {
       {loading &&
         <AlbumCover>
           <div>
-            <Skeleton widthSize='350px' heigthSize='40px'/>
+            <Skeleton widthSize='80%' heigthSize='40px'/>
           </div>
           <div style={{marginTop:'15px'}}>
-            <Skeleton widthSize='120px' heigthSize='20px'/>
+            <Skeleton widthSize='30%' heigthSize='20px'/>
           </div>
         </AlbumCover>
       }
