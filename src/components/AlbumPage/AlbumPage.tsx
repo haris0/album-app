@@ -49,7 +49,7 @@ const AlbumPage = () => {
             </div>
           </AlbumCover>
           <Container style={{marginTop:'1.5rem', marginBottom:'1.5rem'}}>
-            <PhotoCard photoList={data.data.photos} albumName={data.data.title}/>
+            <PhotoCard photoList={data.data.photos}/>
           </Container>
         </>
       }

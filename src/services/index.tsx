@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useState, useEffect} from 'react'
-import {albumType} from '../types'
+import {albumType, photoType} from '../types'
 
 export const albums:string = "albums"
 export const users:string = "users"
@@ -85,6 +85,9 @@ export const useFetchAlbumPhotos = (id:string, ref:any) => {
             HTTP.get(albums+'/'+id)
           ])
           let responseUser = await HTTP.get(users+'/'+responseAlbum.data.userId)
+          responsePhotos.data.forEach((photo:photoType)=>{
+            photo.albumTitle = responseAlbum.data.title
+          })
           responseAlbum.data.photos = responsePhotos.data
           responseAlbum.data.userData = responseUser.data
           setData(responseAlbum);

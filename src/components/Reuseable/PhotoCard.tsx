@@ -12,11 +12,10 @@ import {useHistory} from 'react-router-dom'
 
 type props = {
   photoList: photoType[],
-  albumName?:string,
   showAlbum?:boolean
 }
 
-const PhotoCard = ({photoList, albumName, showAlbum=false}:props) => {
+const PhotoCard = ({photoList, showAlbum=false}:props) => {
 
   const history = useHistory()
 
@@ -26,7 +25,6 @@ const PhotoCard = ({photoList, albumName, showAlbum=false}:props) => {
   const getCountById = useGetCountById()
 
   const handleFavPhoto = (photos:photoType) =>{
-    photos.albumName = albumName
     favoritePhotos(photos)
   }
 
@@ -54,11 +52,11 @@ const PhotoCard = ({photoList, albumName, showAlbum=false}:props) => {
                 onClick={()=> goToDeatilPhoto(photo.id)}>
                 {photo.title}
               </Card.Subtitle>
-              {photo.albumName && showAlbum &&
+              {showAlbum &&
                 <Card.Subtitle 
                   className='album-name'
                   onClick={()=> goToAlbum(photo.albumId)}>
-                  Album : {photo.albumName}
+                  Album : {photo.albumTitle}
                 </Card.Subtitle>
               }
               <div className="action">
