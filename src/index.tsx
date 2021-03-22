@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FavoriteContexProvider from './context'
+import FavoriteContexProvider from './context/FavoriteContex'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -6,7 +6,7 @@ import {Navbar,
         Container} from 'react-bootstrap'
 import './Header.scss'
 import {useHistory} from "react-router-dom";
-import {useCountFavoritePhotos} from '../../context'
+import {useCountFavoritePhotos} from '../../context/FavoriteContex'
 
 type props = {
   showFav?: boolean

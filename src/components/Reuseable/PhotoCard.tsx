@@ -6,7 +6,7 @@ import bookmarked from '../../assets/bookmarked.png'
 import {Card} from 'react-bootstrap'
 import {useAddFavoritePhotos, 
         useCheckFavoritePhotos,
-        useRemoveFavoritePhotos} from '../../context'
+        useRemoveFavoritePhotos} from '../../context/FavoriteContex'
 import {useHistory} from 'react-router-dom'
 
 type props = {
