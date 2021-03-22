@@ -1,8 +1,13 @@
-import React, { createContext, useContext, useState} from 'react'
+import React, { createContext, useContext, useState, useEffect} from 'react'
 import { favoriteContextType, photoType } from '../types'
 
+let initState = []
+if(localStorage.hasOwnProperty("favoritePhoto")){
+  initState = JSON.parse(localStorage.getItem("favoritePhoto") || '[]');
+}
+
 const contextDefaultValues: favoriteContextType = {
-  favoritePhotos: [],
+  favoritePhotos: initState,
   addFavoritePhoto: () => {},
   removeFavoritePhoto: () => {},
 };
@@ -16,6 +21,10 @@ const FavoriteContexProvider = (props:any) => {
   const [favoritePhotos, setFavoritePhotos] = useState<photoType[]>(contextDefaultValues.favoritePhotos);
   const addFavoritePhoto = (newPhoto: photoType) => setFavoritePhotos((photos) => [...photos, newPhoto]);
   const removeFavoritePhoto = (id:number) => setFavoritePhotos((photos) => photos.filter((item) => item.id !== id))
+
+  useEffect(() => {
+    localStorage.setItem("favoritePhoto", JSON.stringify(favoritePhotos));
+  }, [favoritePhotos]);
 
   return (
     <FavoriteContex.Provider value={{

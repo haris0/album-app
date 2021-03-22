@@ -42,3 +42,19 @@ export interface favoriteContextType{
   addFavoritePhoto : (photo: photoType) => void
   removeFavoritePhoto : (id: number) => void
 }
+
+export interface commentType{
+  comment: string,
+  date: Date,
+}
+
+export interface commentsType{
+  photoId: number,
+  comments: commentType[]
+}
+
+export interface commentContextType{
+  comments : commentsType[],
+  addComment : (photoId:number, comment: commentType) => void
+  getCommentCount : (photoId:number) => void
+}

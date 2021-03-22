@@ -1,0 +1,69 @@
+.detail-photo{
+  .container-margin{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+    .photo-div{
+      .photo-detail{
+        width: 100%;
+        margin: auto;
+      }
+      .photo-title{
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: x-large;
+        margin: 10px 0;
+        line-height: 30px;
+      }
+    }
+    .comment-div{
+      margin-bottom: 65px;
+      .comment-title{
+        margin-bottom: 10px;
+      }
+      .comment{
+        font-size: smaller;
+        padding-left: 10px;
+        border-left: solid #343A40;
+        margin-bottom: 10px;
+
+        .name{
+          font-weight: bold;
+        }
+
+        .commnet-text{
+          word-wrap: break-word;
+        }
+      }
+    }
+  }
+
+  .comment-input{
+    background-color: #eeeeee;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    .margin-input{
+      margin-bottom: 0px !important;
+
+      .no-outline:focus{
+        outline:0px !important;
+        -webkit-appearance:none;
+        box-shadow: none !important;
+      }
+
+      .send-button{
+        padding: 0px;
+        border-color: #ced4da !important;
+        background-color: #343A40;
+        .send-img{
+          position: relative;
+          height: 1.7rem;
+          padding: 0 15px;
+        }
+      }
+    }
+  }
+}

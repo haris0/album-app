@@ -80,8 +80,10 @@ export const useFetchAlbumPhotos = (id:string, ref:any) => {
     if (ref.current) {
       (async () => {
         try {
-          let responsePhotos = await HTTP.get(albums+'/'+id+'/'+photos);
-          let responseAlbum = await HTTP.get(albums+'/'+id);
+          let [responsePhotos, responseAlbum] = await Promise.all([
+            HTTP.get(albums+'/'+id+'/'+photos),
+            HTTP.get(albums+'/'+id)
+          ])
           let responseUser = await HTTP.get(users+'/'+responseAlbum.data.userId)
           responseAlbum.data.photos = responsePhotos.data
           responseAlbum.data.userData = responseUser.data

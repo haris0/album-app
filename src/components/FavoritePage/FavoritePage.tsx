@@ -1,6 +1,6 @@
 import React from 'react'
 import './FavoritePage.scss'
-import {useFavoritePhotos} from '../../context'
+import {useFavoritePhotos} from '../../context/FavoriteContex'
 import AlbumCover from '../Reuseable/AlbumCover'
 import Header from '../Reuseable/Header'
 import {Container} from 'react-bootstrap'

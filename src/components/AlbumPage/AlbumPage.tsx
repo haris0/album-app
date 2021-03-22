@@ -1,13 +1,13 @@
 import React,{useRef} from 'react'
 import './AlbumPage.scss'
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 import {useFetchAlbumPhotos} from '../../services'
 import Header from '../Reuseable/Header'
 import {Container} from 'react-bootstrap'
 import ErrorText from '../Reuseable/ErrorText'
 import Skeleton from '../Reuseable/Skeleton'
 import PhotoCard from '../Reuseable/PhotoCard'
-import AlbumCover from '../Reuseable/AlbumCover';
+import AlbumCover from '../Reuseable/AlbumCover'
 import {useHistory} from "react-router-dom"
 
 const AlbumPage = () => {
