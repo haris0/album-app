@@ -1,8 +1,13 @@
-import React, { createContext, useContext, useState} from 'react'
+import React, { createContext, useContext, useState, useEffect} from 'react'
 import { commentContextType, commentsType, commentType } from '../types'
 
+let initState = []
+if(localStorage.hasOwnProperty("commentPhoto")){
+  initState = JSON.parse(localStorage.getItem("commentPhoto") || '[]');
+}
+
 const contextDefaultValues: commentContextType = {
-  comments: [],
+  comments: initState,
   addComment: () => {},
   getCommentCount: () => {}
 };
@@ -33,6 +38,10 @@ const CommentContexProvider = (props:any) => {
     }
     return count
   }
+
+  useEffect(() => {
+    localStorage.setItem("commentPhoto", JSON.stringify(comments));
+  }, [comments]);
 
   return (
     <CommentContex.Provider value={{
