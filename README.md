@@ -1,6 +1,13 @@
 # Album App
 Show album photos and user from [jsonplaceholder](https://jsonplaceholder.typicode.com/), you can add comment and saved your favorite photos
 
+## Preview
+![preview1](./Preview1.png)
+![preview2](./Preview2.png)
+![preview3](./Preview3.png)
+![preview4](./Preview4.png)
+![preview5](./Preview5.png)
+
 ## Build Setup
 
 ``` bash
