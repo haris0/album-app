@@ -4,16 +4,13 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FavoriteContexProvider from './context/FavoriteContex'
-import CommentContexProvider from './context/CommentContex'
+import ContextProvider from './context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <FavoriteContexProvider>
-      <CommentContexProvider>
-        <App />
-      </CommentContexProvider>
-    </FavoriteContexProvider>
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
